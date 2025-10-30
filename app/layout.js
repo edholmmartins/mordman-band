@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Your Band — Official Site',
-  description: 'LOUD. RAW. ALIVE.',
+  title: 'Mordman Band — Official Site',
+  description: 'HÖGT. RÅTT. KUKA.',
 };
 
 export default function RootLayout({ children }) {
