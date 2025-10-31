@@ -329,20 +329,20 @@ export default function Page() {
   {/* Full-bleed background wraps BOTH header and email */}
   <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-white/[0.03]">
     <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
-      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest">Kontakt</h2>
+      <h2 className="text-3xl md:text-4xl font-black uppercase">Kontakt</h2>
       <p className="mt-2 text-white/70 font-body max-w-2xl">
         Bokningar, press eller allmänna förfrågningar — skicka oss ett email:
       </p>
 
       {/* BIG EMAIL CARD (still full width visually, but no line above it) */}
       <a
-        href="mailto:booking@yourband.com?subject=Booking%20Inquiry"
+        href="mailto:boka@mordman.se?subject=Bokning"
         className="group mt-8 block overflow-hidden rounded-2xl border border-white/10 p-10 md:p-14 hover:bg-white hover:text-black transition"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 blur transition" />
         <div className="relative z-10">
-          <div className="text-xs uppercase tracking-widest opacity-70 font-body">Email</div>
-          <div className="mt-1 font-heading text-4xl sm:text-5xl md:text-6xl tracking-widest">
+          <div className="text-xs uppercase opacity-70 font-body">Email</div>
+          <div className="mt-1 font-heading text-4xl sm:text-5xl md:text-6xl tracking-wide">
             boka@mordman.se
           </div>
           <div className="mt-3 text-sm opacity-80 font-body">
