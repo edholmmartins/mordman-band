@@ -87,10 +87,12 @@ export default function Page() {
 
   const sections = useMemo(
     () => [
-      { id: 'who', label: 'Vilka är vi' },
-      { id: 'photos', label: 'Bilder' },
-      { id: 'socials', label: 'Socials' },
-      { id: 'contact', label: 'Kontakt' },
+      { id: 'who', label: 'VILKA ÄR VI' },
+      { id: 'music', label: 'VAD SPELAR VI' }, // <— add this
+      { id: 'photos', label: 'BILDER' },
+      { id: 'socials', label: 'SOCIALS' },
+      { id: 'contact', label: 'KONTAKT' },
+      
     ],
     []
   );
@@ -106,19 +108,16 @@ export default function Page() {
       <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? 'backdrop-blur bg-black/70 border-b border-white/10' : 'bg-transparent'}`}>
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
-            {/* Wide logo placeholder — replace with your /public logo */}
             <div className="flex items-center gap-3">
-              <div className="h-7 w-[160px] sm:w-[200px] bg-white/90 text-black font-bold tracking-widest flex items-center justify-center rounded-sm">
-                {/* Example:
-                  <Image src="/your-logo.svg" alt="Band logo" width={200} height={28} priority />
-                */}
-                LOGO
-              </div>
+              
+                { 
+                  <Image src="/content/logo_text.png" alt="Band logo" width={200} height={28} priority />
+                }
               <span className="sr-only">Band Home</span>
             </div>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-6 text-sm uppercase tracking-widest">
+            <nav className="hidden md:flex items-center gap-6 text-sm uppercase font-heading">
               {sections.map((s) => (
                 <button key={s.id} onClick={() => scrollTo(s.id)} className="hover:opacity-80">
                   {s.label}
@@ -142,7 +141,7 @@ export default function Page() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 items-center py-16 md:py-24">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight">
+              <h1 className="text-6xl sm:text-5xl md:text-6xl font-black leading-tight">
                 HÖGT. RÅTT. <span className="text-white/60">KUKA.</span>
               </h1>
               <p className="mt-5 text-white/80 max-w-prose">
@@ -152,14 +151,14 @@ export default function Page() {
                 <a
                   href="#photos"
                   onClick={(e) => { e.preventDefault(); scrollTo('photos'); }}
-                  className="inline-flex items-center gap-2 rounded-full border border-white px-5 py-2.5 text-sm uppercase tracking-widest hover:bg-white hover:text-black transition"
+                  className="inline-flex items-center gap-2 rounded-full border border-white px-5 py-2.5 text-sm uppercase hover:bg-white hover:text-black transition"
                 >
                   Bilder <ArrowUpRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
                   onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm uppercase tracking-widest hover:opacity-90 transition"
+                  className="inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm uppercase hover:opacity-90 transition"
                 >
                   Boka oss
                 </a>
@@ -192,21 +191,41 @@ export default function Page() {
       {/* Who we are */}
       <section id="who" className="scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest">Vilka är vi?</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase">Vilka är vi?</h2>
           <p className="mt-6 text-white/80 max-w-3xl leading-relaxed">
             Vi är ett 5-manna coverband som lirar låtar från 90- och 00-talet. Vi satsar på låtar med hög igenkänning men som kanske inte är de mest uppenbara dängorna. Gåshud utlovas!</p>
         </div>
       </section>
 
+      {/* Music */}
+<section id="music" className="relative left-1/2 right-1/2 -mx-[50vw] w-screen border-t border-white/10 bg-white/[0.03]">
+  <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
+    <div className="flex items-end justify-between gap-6">
+      <h2 className="text-3xl md:text-4xl font-black uppercase">Vad spelar vi?</h2>
+    </div>
+
+     <div className="mt-8 rounded-2xl border border-white/10 overflow-hidden shadow-2xl">
+      <iframe
+        title="Spotify Playlist"
+        src={`https://open.spotify.com/embed/playlist/260tGjraPvj0SnfFwag455?utm_source=generator&theme=0`}
+        className="w-full h-[420px] md:h-[520px] bg-black"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+
       {/* Photos — per-tile crossfade */}
       <section id="photos" className="scroll-mt-24 border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
           <div className="flex items-end justify-between gap-6">
-            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest">Bilder</h2>
+            <h2 className="text-3xl md:text-4xl font-black uppercase">Bilder</h2>
             <a
               href="#top"
               onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="text-xs uppercase tracking-widest opacity-70 hover:opacity-100"
+              className="text-xs uppercase opacity-70 hover:opacity-100"
             >
               Tillbaks till toppen
             </a>
@@ -252,7 +271,7 @@ export default function Page() {
       {/* Socials */}
       <section id="socials" className="scroll-mt-24 border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest">Socials</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase">Socials</h2>
           <p className="mt-6 text-white/80">Följ ljudet. Nya låtar, turnédatum och bakom kulisserna.</p>
 
           <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -267,30 +286,30 @@ export default function Page() {
       {/* Contact */}
       <section id="contact" className="scroll-mt-24 border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest">Kontakt</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase">Kontakt</h2>
           <p className="mt-6 text-white/80">Bokning, press eller kärleksbrev. Kontakta oss:</p>
 
         <div className="mt-8 grid md:grid-cols-2 gap-8">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
             <div>
-              <label className="block text-xs uppercase tracking-widest mb-2">Ditt namn</label>
+              <label className="block text-xs uppercase mb-2">Ditt namn</label>
               <input type="text" placeholder="Kurt Cobain" className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30" />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest mb-2">E-post</label>
+              <label className="block text-xs uppercase mb-2">E-post</label>
               <input type="email" placeholder="meatloaf@example.com" className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30" />
             </div>
             <div>
-              <label className="block text-xs uppercase tracking-widest mb-2">Meddelande</label>
+              <label className="block text-xs uppercase mb-2">Meddelande</label>
               <textarea rows={5} placeholder="Berätta om ditt evenemang…" className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30" />
             </div>
-            <button className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm uppercase tracking-widest hover:opacity-90 transition">
+            <button className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm uppercase hover:opacity-90 transition">
               Skicka <ArrowUpRight className="h-4 w-4" />
             </button>
           </form>
 
           <div className="rounded-2xl border border-white/10 p-6">
-            <h3 className="text-lg font-bold uppercase tracking-widest">Direktkontakt</h3>
+            <h3 className="text-lg font-bold uppercase">Direktkontakt</h3>
             <ul className="mt-4 space-y-3">
               <li className="flex items-center gap-3 opacity-80"><Mail className="h-5 w-5" /><a className="hover:underline" href="mailto:boka@mordman.se">boka@mordman.se</a></li>
               <li className="flex items-center gap-3 opacity-80"><ArrowUpRight className="h-5 w-5" /><a className="hover:underline" href="#socials" onClick={(e)=>{e.preventDefault(); scrollTo('socials');}}>Hitta oss på sociala medier</a></li>
