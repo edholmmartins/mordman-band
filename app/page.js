@@ -39,7 +39,7 @@ function FloatingEmailCTA() {
         fixed inset-x-4 bottom-4 z-40
         rounded-full px-6 py-4
         bg-white text-black
-        text-sm font-heading uppercase tracking-widest
+        text-sm font-heading uppercase 
         shadow-2xl shadow-black/40
         hover:opacity-90 transition
         pb-[calc(env(safe-area-inset-bottom)+1rem)]
@@ -153,7 +153,7 @@ export default function Page() {
                 { 
                   <Image src="/content/logo_text.png" alt="Band logo" width={200} height={28} priority />
                 }
-              <span className="sr-only">Band Home</span>
+              <span className="sr-only">Band hem!</span>
             </div>
 
             {/* Desktop Nav */}
@@ -173,67 +173,89 @@ export default function Page() {
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative pt-24">
-        <div className="absolute inset-0 -z-10">
-          <div className="h-full w-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/10 via-black to-black" />
-        </div>
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-8 items-center py-16 md:py-24">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <h1 className="text-6xl sm:text-5xl md:text-6xl font-black leading-tight">
-                HÖGT. RÅTT. <span className="text-neutral-400 font-heading">RÖJ.</span>
-              </h1>
-              <p className="mt-5 text-white/80 max-w-prose">
-                Trött på Avicii-covers och RAJRAJ? 
-              </p>
-              <div className="mt-8 flex gap-4">
-                <a
-                  href="#photos"
-                  onClick={(e) => { e.preventDefault(); scrollTo('photos'); }}
-                  className="inline-flex items-center gap-2 rounded-full border border-white px-5 py-2.5 text-sm uppercase hover:bg-white hover:text-black transition"
-                >
-                  Bilder <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <a
-                  href="#contact"
-                  onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}
-                  className="inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm uppercase hover:opacity-90 transition"
-                >
-                  Boka oss
-                </a>
-              </div>
-            </motion.div>
+      {/* HERO — full-bleed background with motion & overlayed text */}
+<section id="hero" className="relative min-h-[calc(100vh-4rem)] pt-24 overflow-hidden">
+  {/* Background image (Ken Burns subtle scale) */}
+  <motion.div
+    initial={{ scale: 1.05, opacity: 0 }}
+    animate={{ scale: 1, opacity: 1 }}
+    transition={{ duration: 1.2, ease: 'easeOut' }}
+    className="absolute inset-0 z-0"
+  >
+    <Image
+      src="/content/hero.jpg"            // must be at: public/content/hero.jpg
+      alt="Mördman live"
+      fill
+      sizes="100vw"
+      priority
+      quality={62}
+      placeholder="blur"
+      blurDataURL={shimmerDataURL(32, 24)}
+      className="object-cover object-center"
+    />
+    {/* Overlay for legibility (won’t block clicks) */}
+    <div className="absolute inset-0 bg-black/55 pointer-events-none" />
+    <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/40 to-transparent pointer-events-none" />
+  </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="relative aspect-[4/3] md:aspect-[5/4] rounded-2xl overflow-hidden shadow-2xl"
-            >
-              <Image
-  src="/content/hero.jpg"
-  alt="Band live performance"
-  fill
-  className="object-cover"
-  priority
-  sizes="(min-width:1024px) 50vw, 100vw"
-  quality={IMAGE_QUALITY}
-  placeholder="blur"
-  blurDataURL={shimmerDataURL(32, 24)}
-/>
-              <div className="absolute inset-0 bg-black/30" />
-            </motion.div>
-          </div>
-        </div>
-      </section>
+  {/* Text block (left-aligned) */}
+  <motion.div
+    initial={{ opacity: 0, y: 26 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+    className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6"
+  >
+    <div className="max-w-3xl">
+      <h1 className="text-6xl sm:text-7xl md:text-8xl font-black leading-[0.95] uppercase">
+        HÖGT. RÅTT. <br/><span className="text-neutral-400 font-heading">RÖJ.</span>
+      </h1>
+      <span className="mt-3 text-4xl text-white/80 max-w-prose font-body">
+        Trött på Avicii-covers och RAJRAJ?
+      </span>
+      <div className="mt-8 flex flex-wrap gap-4">
+        <a
+          href="#photos"
+          onClick={(e) => { e.preventDefault(); scrollTo('photos'); }}
+          className="inline-flex items-center gap-2 rounded-full border border-white px-5 py-2.5 text-sm uppercase hover:bg-white hover:text-black transition"
+        >
+          Bilder <ArrowUpRight className="h-4 w-4" />
+        </a>
+        <a
+          href="#contact"
+          onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}
+          className="inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-2.5 text-sm uppercase hover:opacity-90 transition"
+        >
+          Boka oss
+        </a>
+      </div>
+    </div>
+  </motion.div>
+</section>
 
       {/* Who we are */}
       <section id="who" className="scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
           <h2 className="text-3xl md:text-4xl font-black uppercase">Vilka är vi?</h2>
-          <p className="mt-6 text-white/80 max-w-3xl leading-relaxed">
-            Vi är ett 5-manna coverband som lirar låtar från 90- och 00-talet. Vi satsar på låtar med hög igenkänning men som kanske inte är de mest uppenbara dängorna. Gåshud utlovas!</p>
+          <p className="font-body mt-6 text-white/80 leading-relaxed space-y-4">
+            Vi är ett femmanna-coverband som bjuder på svettig nostalgi från 90- och 00-talet – låtarna du älskar men kanske glömt att du saknade.
+            Vi fokuserar på hög igenkänning utan att fastna i de mest uppenbara dängorna – <strong>gåshud utlovas!</strong>
+          </p>
+
+          <p className="font-body text-white/80 leading-relaxed space-y-4 mt-6">
+            När du bokar oss får du ett <strong>komplett paket med både ljud- och ljusutrustning</strong>,
+            anpassat efter lokalen och stämningen du vill skapa.
+            Vi är dessutom registrerade med <strong>F-skattesedel</strong>, så du får en <strong>riktig faktura</strong> – inga konstiga upplägg med mat, kläder eller tjänster som ersättning.
+          </p>
+
+          <p className="font-body text-white/80 leading-relaxed space-y-4 mt-6">
+            Vår <strong>setlist är formbar</strong> efter dina önskemål, men alltid med rötterna i den musik vi älskar att lira
+            (kolla in vår Spotify-lista längre ner!).
+          </p>
+
+          <p className="font-body text-white/80 leading-relaxed space-y-4 mt-6">
+            <strong>Mordman passar perfekt</strong> för 30-, 40- eller 50-årsfesten, firmafesten eller när du vill toppa stämningen på din krog eller restaurang.
+            Kort sagt – vi fixar <strong>röj, svett och rock’n’roll</strong> så det känns som en hel arena, oavsett lokalens storlek.
+          </p>
         </div>
       </section>
 
@@ -314,11 +336,9 @@ export default function Page() {
           <h2 className="text-3xl md:text-4xl font-black uppercase">Socials</h2>
           <p className="mt-6 text-white/80">Följ ljudet. Nya låtar, turnédatum och bakom kulisserna.</p>
 
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            <SocialLink href="https://instagram.com" label="Instagram" Icon={Instagram} />
-            <SocialLink href="https://facebook.com" label="Facebook" Icon={Facebook} />
-            <SocialLink href="https://twitter.com" label="Twitter" Icon={Twitter} />
-            <SocialLink href="https://youtube.com" label="YouTube" Icon={Youtube} />
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-2 gap-4">
+            <SocialLink href="https://www.instagram.com/mordman.band/" label="Instagram" Icon={Instagram} />
+            <SocialLink href="https://www.facebook.com/profile.php?id=61579179277781" label="Facebook" Icon={Facebook} />
           </div>
         </div>
       </section>
