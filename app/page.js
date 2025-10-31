@@ -1,6 +1,6 @@
 'use client';
-
-import { useEffect, useMemo, useRef, useState } from 'react';
+import React from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
 import { Instagram, Facebook, Twitter, Youtube, Mail, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,6 +11,46 @@ import './globals.css';
 const GRID_COUNT = 9;               // how many tiles
 const REPLACE_EVERY_MS = 1400;      // how often to replace a single tile (1.4s)
 const IMAGE_QUALITY = 62;           // next/image quality tweak
+
+// Floating CTA (mobile-only): hides when #contact is visible
+function FloatingEmailCTA() {
+  const [show, setShow] = React.useState(true);
+
+  React.useEffect(() => {
+    const target = document.getElementById('contact');
+    if (!target) return;
+
+    const io = new IntersectionObserver(
+      ([entry]) => setShow(!entry.isIntersecting),
+      { root: null, threshold: 0.1 }
+    );
+
+    io.observe(target);
+    return () => io.disconnect();
+  }, []);
+
+  if (!show) return null;
+
+  return (
+    <a
+      href="mailto:boka@mordman.se?subject=Boka"
+      className="
+        md:hidden
+        fixed inset-x-4 bottom-4 z-40
+        rounded-full px-6 py-4
+        bg-white text-black
+        text-sm font-heading uppercase tracking-widest
+        shadow-2xl shadow-black/40
+        hover:opacity-90 transition
+        pb-[calc(env(safe-area-inset-bottom)+1rem)]
+      "
+      aria-label="Maila oss"
+    >
+      Maila oss 
+    </a>
+  );
+}
+
 
 export default function Page() {
   const [scrolled, setScrolled] = useState(false);
@@ -283,47 +323,45 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="scroll-mt-24 border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-black uppercase">Kontakt</h2>
-          <p className="mt-6 text-white/80">Bokning, press eller kärleksbrev. Kontakta oss:</p>
 
-        <div className="mt-8 grid md:grid-cols-2 gap-8">
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-            <div>
-              <label className="block text-xs uppercase mb-2">Ditt namn</label>
-              <input type="text" placeholder="Kurt Cobain" className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30" />
-            </div>
-            <div>
-              <label className="block text-xs uppercase mb-2">E-post</label>
-              <input type="email" placeholder="meatloaf@example.com" className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30" />
-            </div>
-            <div>
-              <label className="block text-xs uppercase mb-2">Meddelande</label>
-              <textarea rows={5} placeholder="Berätta om ditt evenemang…" className="w-full rounded-lg bg-white/5 border border-white/10 px-4 py-3 placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/30" />
-            </div>
-            <button className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3 text-sm uppercase hover:opacity-90 transition">
-              Skicka <ArrowUpRight className="h-4 w-4" />
-            </button>
-          </form>
+{/* Contact — unified full-bleed block (no separator line) */}
+<section id="contact" className="scroll-mt-24">
+  {/* Full-bleed background wraps BOTH header and email */}
+  <div className="relative left-1/2 right-1/2 -mx-[50vw] w-screen bg-white/[0.03]">
+    <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
+      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-widest">Kontakt</h2>
+      <p className="mt-2 text-white/70 font-body max-w-2xl">
+        Bokningar, press eller allmänna förfrågningar — skicka oss ett email:
+      </p>
 
-          <div className="rounded-2xl border border-white/10 p-6">
-            <h3 className="text-lg font-bold uppercase">Direktkontakt</h3>
-            <ul className="mt-4 space-y-3">
-              <li className="flex items-center gap-3 opacity-80"><Mail className="h-5 w-5" /><a className="hover:underline" href="mailto:boka@mordman.se">boka@mordman.se</a></li>
-              <li className="flex items-center gap-3 opacity-80"><ArrowUpRight className="h-5 w-5" /><a className="hover:underline" href="#socials" onClick={(e)=>{e.preventDefault(); scrollTo('socials');}}>Hitta oss på sociala medier</a></li>
-            </ul>
-            <p className="mt-6 text-sm text-white/60">Vi läser allt. Förvänta dig ett svar inom ett par dagar.</p>
+      {/* BIG EMAIL CARD (still full width visually, but no line above it) */}
+      <a
+        href="mailto:booking@yourband.com?subject=Booking%20Inquiry"
+        className="group mt-8 block overflow-hidden rounded-2xl border border-white/10 p-10 md:p-14 hover:bg-white hover:text-black transition"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 blur transition" />
+        <div className="relative z-10">
+          <div className="text-xs uppercase tracking-widest opacity-70 font-body">Email</div>
+          <div className="mt-1 font-heading text-4xl sm:text-5xl md:text-6xl tracking-widest">
+            boka@mordman.se
+          </div>
+          <div className="mt-3 text-sm opacity-80 font-body">
+            Vi läser allt och svarar på ett par dagar.
           </div>
         </div>
-        </div>
-      </section>
+      </a>
+    </div>
+  </div>
+</section>
+<FloatingEmailCTA />
 
+<footer className="border-t border-white/10">
+  {/* footer content */}
+</footer>
       {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/60">
-          <p>© {new Date().getFullYear()} Mordman band. Alla rättigheter förbehållna.</p>
+          <p>© {new Date().getFullYear()} Mordman Handelsbolag. Alla rättigheter förbehållna.</p>
 
         </div>
       </footer>
@@ -361,3 +399,4 @@ function shimmerDataURL(w = 16, h = 10) {
   </svg>`;
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
+
