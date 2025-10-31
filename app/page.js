@@ -142,7 +142,7 @@ export default function Page() {
           <div className="grid md:grid-cols-2 gap-8 items-center py-16 md:py-24">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <h1 className="text-6xl sm:text-5xl md:text-6xl font-black leading-tight">
-                HÖGT. RÅTT. <span className="text-white/60">KUKA.</span>
+                HÖGT. RÅTT. <span className="text-neutral-400 font-heading">RÖJ.</span>
               </h1>
               <p className="mt-5 text-white/80 max-w-prose">
                 Trött på Avici-covers och RAJRAJ? 
