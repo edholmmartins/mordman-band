@@ -27,6 +27,6 @@ export const metadata = {
   title: 'Mordman band',
   description: 'Officiell hemsida för Mordman band.',
   icons: {
-    icon: '/content/logo_head.png',
+    icon: '/content/mm_favicon_192x192.png',
   },
 };

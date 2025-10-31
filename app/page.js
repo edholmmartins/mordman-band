@@ -185,7 +185,7 @@ export default function Page() {
                 HÖGT. RÅTT. <span className="text-neutral-400 font-heading">RÖJ.</span>
               </h1>
               <p className="mt-5 text-white/80 max-w-prose">
-                Trött på Avici-covers och RAJRAJ? 
+                Trött på Avicii-covers och RAJRAJ? 
               </p>
               <div className="mt-8 flex gap-4">
                 <a
