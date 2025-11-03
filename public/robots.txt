@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mordman.se/sitemap.xml

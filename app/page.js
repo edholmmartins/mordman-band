@@ -151,7 +151,7 @@ export default function Page() {
             <div className="flex items-center gap-3">
               
                 { 
-                  <Image src="/content/logo_text.png" alt="Band logo" width={200} height={28} priority />
+                  <Image src="/content/logo_text.png" alt="Mordman logotyp" width={200} height={28} priority />
                 }
               <span className="sr-only">Band hem!</span>
             </div>
@@ -184,7 +184,7 @@ export default function Page() {
   >
     <Image
       src="/content/hero.jpg"            // must be at: public/content/hero.jpg
-      alt="Mördman live"
+      alt="Mordman coverband från Gävle live på scen"
       fill
       sizes="100vw"
       priority
@@ -308,7 +308,7 @@ export default function Page() {
                     >
                       <Image
                         src={images[i]}
-                        alt={`Band photo ${i + 1}`}
+                        alt={`Mordman på scen ${i + 1}`}
                         fill
                         className="object-cover transition duration-300 hover:scale-[1.03]"
                         sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
