@@ -46,6 +46,9 @@ export const metadata = {
     ],
     locale: "sv_SE",
     type: "website",
+    verification: {
+    google: "yAfJ2adsKzaAW_-1VXZLC4s5nIYzOrLvaijcgGoxPvU",
+  },
   },
 };
 
