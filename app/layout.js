@@ -3,17 +3,17 @@ import "./globals.css";
 
 // ✅ Fonts
 export const oswald = Oswald({
-  subsets: ['latin'], // includes ÅÄÖ
-  weight: ['400','500','600','700'],
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-oswald'
+  variable: '--font-oswald',
 });
 
 export const robotoCondensed = Roboto_Condensed({
   subsets: ['latin'],
-  weight: ['300','400','700'],
+  weight: ['300', '400', '700'],
   display: 'swap',
-  variable: '--font-roboto-condensed'
+  variable: '--font-roboto-condensed',
 });
 
 // ✅ Metadata (used automatically by Next.js)
@@ -22,7 +22,9 @@ export const metadata = {
   description:
     "Mordman är ett coverband från Gävle som levererar röj till 30-, 40- och 50-årsfester, bröllop och firmafester. Komplett ljud, ljus och energi för din fest!",
   icons: {
-    icon: '/content/mm_favicon_192x192.png',
+    icon: '/content/mm_favicon_192x192.png',          // default favicon
+    shortcut: '/content/mm_favicon_192x192.png',      // for older browsers
+    apple: '/content/mm_favicon_192x192.png',         // for iOS
   },
   openGraph: {
     title: "Mordman – Coverband Gävle",
@@ -46,13 +48,15 @@ export const metadata = {
   },
 };
 
-// ✅ Single RootLayout export
+// ✅ Root layout
 export default function RootLayout({ children }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
     "name": "Mordman",
     "url": "https://mordman.se",
+    "logo": "https://mordman.se/content/mm_favicon_192x192.png", // 👈 reuse same file as logo
+    "image": "https://mordman.se/content/hero.jpg",
     "genre": "Coverband",
     "foundingLocation": "Gävle, Sweden",
     "description":
@@ -66,14 +70,14 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="sv" className={`${oswald.variable} ${robotoCondensed.variable}`}>
-      <head>
+      <body className="font-body bg-black text-white">
         {/* ✅ Structured data for SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body className="font-body bg-black text-white">{children}</body>
+        {children}
+      </body>
     </html>
   );
 }
