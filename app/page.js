@@ -122,7 +122,6 @@ export default function Page() {
     }, REPLACE_EVERY_MS);
 
     return () => clearInterval(intervalRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allFiles, images]); // pool is updated inside setImages
 
   const sections = useMemo(
