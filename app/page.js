@@ -6,6 +6,7 @@ import { Instagram, Facebook, Twitter, Youtube, Mail, ArrowUpRight } from 'lucid
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileMenu from '@/components/MobileMenu';
 import SocialLink from '@/components/SocialLink';
+import FaqSection from "@/components/FaqSection";
 import './globals.css';
 
 const GRID_COUNT = 9;               // how many tiles
@@ -372,6 +373,8 @@ export default function Page() {
     </div>
   </div>
 </section>
+<FaqSection />
+
 <FloatingEmailCTA />
 
 <footer className="border-t border-white/10">
