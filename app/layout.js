@@ -49,11 +49,14 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "MusicGroup",
     "name": "Mordman",
+    "alternateName": "Mördman",
     "url": "https://mordman.se",
     "logo": "https://mordman.se/content/mm_favicon_192x192.png",
     "image": "https://mordman.se/content/hero.jpg",
     "description":
       "Mordman är ett coverband och festband från Gävle som spelar live på bröllop, firmafester och privata jubileum. Vi levererar röj, glädje och klassiska pop- och rockhits från 80-, 90- och 2000-talet.",
+    "disambiguatingDescription":
+      "Svenskt rock- och popcoverband från Gävle. Inte relaterat till eller associerat med den svenska folkrockduon Nordman.",
     "genre": ["Coverband", "Festband", "Liveband", "Rockband", "Popband"],
     "keywords": [
       "coverband gävle", "band till bröllop", "festband gävle", "livemusik gävle",
@@ -70,11 +73,25 @@ export default function RootLayout({ children }) {
     "sameAs": [
       "https://www.instagram.com/mordman.band/",
       "https://www.facebook.com/profile.php?id=61579179277781",
-      "https://open.spotify.com/embed/playlist/260tGjraPvj0SnfFwag455?utm_source=generator&theme=0"
+      // bättre som icke-embedad Spotify-url
+      "https://open.spotify.com/playlist/260tGjraPvj0SnfFwag455"
+    ],
+    "subjectOf": {
+      "@type": "WebPage",
+      "name": "Om Mordman – Coverband från Gävle",
+      "url": "https://mordman.se",
+      "description":
+        "Information om Mordman, ett svenskt coverband från Gävle som spelar rock och pop på fester och evenemang. Inte att förväxla med folkrockduon Nordman."
+    },
+    "identifier": [
+      {
+        "@type": "PropertyValue",
+        "name": "NotToBeConfusedWith",
+        "value": "Nordman (Swedish folkrock duo)"
+      }
     ]
   };
 
-  // ✅ FAQ schema for SEO (not visible)
   const jsonLdFAQ = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -134,7 +151,6 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
         />
-
         {children}
       </body>
     </html>
