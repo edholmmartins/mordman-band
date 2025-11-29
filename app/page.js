@@ -8,6 +8,7 @@ import MobileMenu from '@/components/MobileMenu';
 import SocialLink from '@/components/SocialLink';
 import FaqSection from "@/components/FaqSection";
 import './globals.css';
+import Nav from "@/components/NavBar";
 
 const GRID_COUNT = 9;               // how many tiles
 const REPLACE_EVERY_MS = 1400;      // how often to replace a single tile (1.4s)
@@ -54,19 +55,11 @@ function FloatingEmailCTA() {
 
 
 export default function Page() {
-  const [scrolled, setScrolled] = useState(false);
   const [allFiles, setAllFiles] = useState([]);    // all /content/img files
   const [images, setImages] = useState([]);        // currently visible 9
   const [pool, setPool] = useState([]);            // remaining files to draw from
   const indexRef = useRef(0);                      // which tile to replace next
   const intervalRef = useRef(null);
-
-  // Header blur
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   // Fetch image list once
   useEffect(() => {
@@ -125,18 +118,6 @@ export default function Page() {
     return () => clearInterval(intervalRef.current);
   }, [allFiles, images]); // pool is updated inside setImages
 
-  const sections = useMemo(
-    () => [
-      { id: 'who', label: 'VILKA ÄR VI' },
-      { id: 'music', label: 'VAD SPELAR VI' }, // <— add this
-      { id: 'photos', label: 'BILDER' },
-      { id: 'socials', label: 'SOCIALS' },
-      { id: 'contact', label: 'KONTAKT' },
-      
-    ],
-    []
-  );
-
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -144,34 +125,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      {/* Header */}
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? 'backdrop-blur bg-black/70 border-b border-white/10' : 'bg-transparent'}`}>
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-3">
-              
-                { 
-                  <Image src="/content/logo_text.png" alt="Mordman logotyp" width={200} height={28} priority />
-                }
-              <span className="sr-only">Band hem!</span>
-            </div>
-
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-6 text-sm uppercase font-heading">
-              {sections.map((s) => (
-                <button key={s.id} onClick={() => scrollTo(s.id)} className="hover:opacity-80">
-                  {s.label}
-                </button>
-              ))}
-            </nav>
-
-            {/* Mobile menu */}
-            <div className="md:hidden">
-              <MobileMenu sections={sections} />
-            </div>
-          </div>
-        </div>
-      </header>
+      <Nav />
 
       {/* HERO — full-bleed background with motion & overlayed text */}
 <section id="hero" className="relative min-h-[calc(100vh-4rem)] pt-24 overflow-hidden">
@@ -233,7 +187,7 @@ export default function Page() {
 </section>
 
       {/* Who we are */}
-      <section id="who" className="scroll-mt-24">
+      <section id="about" className="scroll-mt-24">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
           <h2 className="text-3xl md:text-4xl font-black uppercase">Vilka är vi?</h2>
           <p className="font-body mt-6 text-white/80 leading-relaxed space-y-4">

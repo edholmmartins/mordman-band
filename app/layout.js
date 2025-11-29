@@ -1,6 +1,9 @@
 import { Oswald, Roboto_Condensed } from 'next/font/google';
 import "./globals.css";
 
+// ⬇️ NEW: import the navbar component
+import NavBar from "../components/NavBar";
+
 export const oswald = Oswald({
   subsets: ['latin'],
   weight: ['400','500','600','700'],
@@ -73,7 +76,6 @@ export default function RootLayout({ children }) {
     "sameAs": [
       "https://www.instagram.com/mordman.band/",
       "https://www.facebook.com/profile.php?id=61579179277781",
-      // bättre som icke-embedad Spotify-url
       "https://open.spotify.com/playlist/260tGjraPvj0SnfFwag455"
     ],
     "subjectOf": {
@@ -96,46 +98,7 @@ export default function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Vilken typ av evenemang spelar Mordman på?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Mordman spelar ofta på bröllop, firmafester, jubileum, 30/40/50-årsfester och krog- eller eventkvällar. Upplägget anpassas alltid efter publik och lokal."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Spelar ni bara i Gävle?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nej! Vi utgår från Gävle men spelar i hela Sverige – Sandviken, Uppsala, Dalarna, Stockholm och längre bort också, med rimlig framförhållning för resa och planering."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Vilken musik och vilka artister spelar ni?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Vi spelar energisk rock och alternativ pop från 80-talet och framåt – låtar från bland andra Foo Fighters, Blink-182, The Killers, Audioslave, The Hellacopters, Queens of the Stone Age, Nothing But Thieves, The Hives, The Smashing Pumpkins, Red Hot Chili Peppers, The White Stripes, Priestess, KISS, Millencolin, Turbonegro, Paramore, Kings of Leon, Rage Against the Machine, Blur, Franz Ferdinand, Black Sabbath, Ozzy Osbourne och Nirvana."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Vad kostar det att boka Mordman?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Pris förhandlas i förväg och beror på resväg, vad vi behöver ta med i ljud och ljus, samt speltidens längd. Kontakta boka@mordman.se för offert."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kan ni spela utomhus? Vad krävs?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Såklart! Bara scenen håller oss, elen håller för oss, och grannarna antingen inte bryr sig – eller ännu hellre vill vara med. Vi behöver väderskydd för utrustningen och stabil strömmatning nära scenen."
-        }
-      }
+      // … your FAQ objects …
     ]
   };
 
@@ -151,6 +114,10 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }}
         />
+
+        {/* ⬇️ NEW: navbar shown on every page */}
+        <NavBar />
+
         {children}
       </body>
     </html>
