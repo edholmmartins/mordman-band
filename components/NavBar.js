@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ArrowUpRight } from 'lucide-react';
 import Image from "next/image";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
@@ -11,6 +12,7 @@ const sections = [
   { id: "photos", label: "BILDER" },
   { id: "socials", label: "SOCIALS" },
   { id: "contact", label: "KONTAKT" },
+  { id: "gigs", label: "SPELNINGAR" },
 ];
 
 function scrollToSection(id) {
@@ -37,7 +39,6 @@ export default function NavBar() {
   }, []);
 
   return (
-    // ❗No extra spacer div here
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
         scrolled
@@ -49,28 +50,39 @@ export default function NavBar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <Link href="/">
-                <Image
+              <Image
                 src="/content/logo_text.png"
                 alt="Mordman logotyp"
                 width={200}
                 height={28}
                 priority
-                />
+              />
             </Link>
             <span className="sr-only">Band hem!</span>
           </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm uppercase font-heading">
-            {sections.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => scrollToSection(s.id)}
-                className="hover:opacity-80"
-              >
-                {s.label}
-              </button>
-            ))}
+            {/* All internal page sections (scroll-to) */}
+            {sections
+              .filter((s) => s.id !== "gigs")
+              .map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => scrollToSection(s.id)}
+                  className="hover:opacity-80"
+                >
+                  {s.label}
+                </button>
+              ))}
+
+            {/* Divider before external/subpage link */}
+            <span className="h-5 w-px bg-white/30 mx-1"></span>
+
+            {/* Normal text link to /gigs */}
+            <Link href="/spelningar" className="inline-flex items-center py-2.5 text-sm uppercase">
+              SPELNINGAR <ArrowUpRight className="h-4 w-4 ml-1" />
+            </Link>
           </nav>
 
           {/* Mobile menu */}

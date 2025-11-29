@@ -170,7 +170,7 @@ export default function Page() {
         <a
           href="#photos"
           onClick={(e) => { e.preventDefault(); scrollTo('photos'); }}
-          className="inline-flex items-center gap-2 rounded-full border border-white px-5 py-2.5 text-sm uppercase hover:bg-white hover:text-black transition"
+          className="inline-flex items-center gap-1 rounded-full border border-white px-5 py-2.5 text-sm uppercase hover:bg-white hover:text-black transition"
         >
           Bilder <ArrowUpRight className="h-4 w-4" />
         </a>

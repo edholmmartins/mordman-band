@@ -38,13 +38,13 @@ export default function GigPage({ params }) {
   });
 
   return (
-    <main className="min-h-screen bg-black text-zinc-100 px-4 py-10 md:px-10">
+    <main className="min-h-screen bg-black text-zinc-100 px-4 py-10 md:px-10 pt-24">
       <section className="max-w-4xl mx-auto space-y-8">
         <Link
-          href="/gigs"
+          href="/spelningar"
           className="inline-flex text-xs uppercase tracking-[0.18em] text-zinc-500 hover:text-zinc-300 mb-2"
         >
-          ← Tillbaka till gigs
+          ← Tillbaka till spelningar
         </Link>
 
         <header className="space-y-2">
@@ -86,7 +86,7 @@ export default function GigPage({ params }) {
             </ol>
           </section>
         )}
-
+    {/* 
         {gig.media?.youtubeUrl && (
           <section className="space-y-3">
             <h2 className="text-xl font-medium">Video</h2>
@@ -101,6 +101,7 @@ export default function GigPage({ params }) {
             </div>
           </section>
         )}
+          */}
       </section>
     </main>
   );
