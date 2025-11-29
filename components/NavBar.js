@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 
 const sections = [
@@ -47,13 +48,15 @@ export default function NavBar() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
-            <Image
-              src="/content/logo_text.png"
-              alt="Mordman logotyp"
-              width={200}
-              height={28}
-              priority
-            />
+            <Link href="/">
+                <Image
+                src="/content/logo_text.png"
+                alt="Mordman logotyp"
+                width={200}
+                height={28}
+                priority
+                />
+            </Link>
             <span className="sr-only">Band hem!</span>
           </div>
 
