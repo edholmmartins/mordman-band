@@ -19,7 +19,7 @@ export default function GigsPage() {
     <main className="min-h-screen bg-black text-zinc-100 px-4 py-10 pt-24 md:px-10">
       <section className="max-w-5xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-heading font-semibold tracking-tight mb-4">
-        Spelningar        
+          Spelningar
         </h1>
 
         <p className="text-zinc-400 max-w-2xl mb-10">
@@ -48,13 +48,22 @@ export default function GigsPage() {
               {/* Content */}
               <div className="p-4 flex flex-col flex-1">
 
-                <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-500 mb-1">
-                  {new Date(gig.date).toLocaleDateString("sv-SE", {
-                    year: "numeric",
-                    month: "short",
-                    day: "2-digit",
-                  })}
-                </p>
+                {/* Date (left) + Audience (right) */}
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+                    {new Date(gig.date).toLocaleDateString("sv-SE", {
+                      year: "numeric",
+                      month: "short",
+                      day: "2-digit",
+                    })}
+                  </p>
+
+                  {gig.audience && (
+                    <span className="text-[10px] uppercase tracking-[0.18em] text-zinc-400">
+                      {gig.audience}
+                    </span>
+                  )}
+                </div>
 
                 <h2 className="text-lg font-heading font-medium mb-1 group-hover:text-zinc-50">
                   {gig.title || `${gig.venue}, ${gig.city}`}

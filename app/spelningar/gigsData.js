@@ -6,7 +6,8 @@ export const gigs = [
     date: "2025-11-08",
     city: "Gävle",
     venue: "Furuvik",
-    title: "Företag - Firmafest för Partykungen",
+    audience: "Företag", 
+    title: "Firmafest för Partykungen",
     poster: "/content/gigs/pk-furuvik.png",  
     description:
       "Fullt ös på Partykungens årliga Halloweenfest! Ackompanjerade av lasershow.",
@@ -35,7 +36,8 @@ export const gigs = [
     date: "2025-09-06",
     city: "Sandviken",
     venue: "The Church",
-    title: "Publik - Hädelse i kyrkan",
+    audience: "Öppen spelning", 
+    title: "Hädelse i kyrkan",
     poster: "/content/gigs/church.jpg",  
     description:
       "Förnärmade gud(arna) i kyrkan!",
@@ -67,7 +69,8 @@ export const gigs = [
     date: "2024-11-08",
     city: "Gävle",
     venue: "Musikhuset - Sjömanskyrkan",
-    title: "Företag - Firmafest för Partykungen",
+    audience: "Företag", 
+    title: "Firmafest för Partykungen",
     poster: "/content/gigs/pk-musikhuset.png",  
     description:
       "Fullt ös på Partykungens årliga Halloweenfest!",
@@ -92,7 +95,8 @@ export const gigs = [
     date: "2025-07-30",
     city: "Gävle",
     venue: "Trådgärd",
-    title: "Privat - 40-årsfest",
+    audience: "Privat", 
+    title: "40-årsfest",
     poster: "/content/gigs/garden.jpg",  
     description:
       "Semi-intim trädgårdsfestspelning i lummigt poolområde med oändliga encores. Hela kvarteret anslöt innan kvällen var över!",

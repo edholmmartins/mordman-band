@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState, useEffect, useMemo, useRef } from 'react';
 import Image from 'next/image';
-import { Instagram, Facebook, Twitter, Youtube, Mail, ArrowUpRight } from 'lucide-react';
+import { Instagram, Facebook, Mail, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MobileMenu from '@/components/MobileMenu';
 import SocialLink from '@/components/SocialLink';
@@ -34,22 +34,22 @@ function FloatingEmailCTA() {
   if (!show) return null;
 
   return (
-    <a
-      href="mailto:boka@mordman.se?subject=Boka"
-      className="
-        md:hidden
-        fixed inset-x-4 bottom-4 z-40
-        rounded-full px-6 py-4
-        bg-white text-black
-        text-sm font-heading uppercase 
-        shadow-2xl shadow-black/40
-        hover:opacity-90 transition
-        pb-[calc(env(safe-area-inset-bottom)+1rem)]
-      "
-      aria-label="Maila oss"
-    >
-      Maila oss 
-    </a>
+<a
+  href="mailto:boka@mordman.se?subject=Boka"
+  className="
+    md:hidden
+    fixed inset-x-4 bottom-6 z-40
+    px-6 py-4 rounded-2xl
+    backdrop-blur-lg bg-white/10 border border-white/20
+    text-white font-heading uppercase tracking-wide
+    shadow-xl shadow-black/40
+    flex items-center justify-center
+    transition-all hover:bg-white/20
+  "
+>
+  Maila oss!
+  <Mail className="ml-1 h-5 w-5 opacity-90 self-center translate-y-[0.5px]" />
+</a>
   );
 }
 
