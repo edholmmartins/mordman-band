@@ -435,7 +435,7 @@ export default function Page() {
       {/* Footer */}
       <footer className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/60">
-          <p>© {new Date().getFullYear()} Mordman Handelsbolag - Org. Nummer: 9698038123. Alla rättigheter förbehållna.</p>
+          <p>© {new Date().getFullYear()} Mordman Handelsbolag - Org. Nummer: 969803-8123. Alla rättigheter förbehållna.</p>
         </div>
       </footer>
     </div>
