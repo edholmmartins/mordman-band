@@ -95,12 +95,51 @@ export default function RootLayout({ children }) {
   };
 
   const jsonLdFAQ = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      // … your FAQ objects …
-    ]
-  };
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Vilken typ av evenemang spelar Mordman på?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mordman spelar ofta på bröllop, firmafester, jubileum samt 30-, 40- och 50-årsfester. Vi gör även krog- och eventkvällar och anpassar upplägget efter publik och lokal."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Spelar ni bara i Gävle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nej. Vi utgår från Gävle men spelar på många orter, till exempel Sandviken, Uppsala, Dalarna och Stockholm, samt längre bort när vi har rimlig framförhållning för resa och planering."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vilken musik och vilka artister spelar ni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vi spelar energisk rock och alternativ pop från 80-talet och framåt – låtar som publiken känner igen och vill sjunga med i. I vår repertoar finns bland annat Foo Fighters, Blink-182, The Killers, Audioslave, The Hellacopters, Queens of the Stone Age, Nothing But Thieves, The Hives, The Smashing Pumpkins, Red Hot Chili Peppers, The White Stripes, Priestess, KISS, Millencolin, Turbonegro, Paramore, Kings of Leon, Rage Against the Machine, Blur, Franz Ferdinand, Black Sabbath, Ozzy Osbourne och Nirvana. Vi tar gärna emot önskelåtar så länge de funkar på dansgolvet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vad kostar det att boka Mordman?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Priset för att boka Mordman förhandlas i förväg och beror bland annat på resväg, vad vi behöver ta med i ljud- och ljusutrustning samt speltidens längd. Hör av dig med datum, plats och ungefärligt upplägg så återkommer vi snabbt med prisförslag på boka@mordman.se."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kan ni spela utomhus? Vad krävs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, vi kan spela utomhus. Det viktigaste är att scenen klarar band och utrustning, att elen håller för belastningen och att det finns väderskydd för utrustningen. Vi behöver stabil strömmatning, helst egen fas, nära scenen, och att omgivningen accepterar ljudnivån."
+      }
+    }
+  ]
+};
 
   return (
     <html lang="sv" className={`${oswald.variable} ${robotoCondensed.variable}`}>
