@@ -43,6 +43,20 @@ export const metadata = {
     locale: "sv_SE",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mordman – Coverband Gävle",
+    description:
+      "Coverband från Gävle med fullt röj! Perfekt för firmafest, 40-årsfest, bröllop och krogkvällar.",
+    images: [
+      {
+        url: "/content/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Mordman coverband från Gävle live på scen",
+      },
+    ],
+  },
   verification: {
     google: "yAfJ2adsKzaAW_-1VXZLC4s5nIYzOrLvaijcgGoxPvU",
   },

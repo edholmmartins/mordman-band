@@ -37,8 +37,34 @@ export default function GigPage({ params }) {
     day: "2-digit",
   });
 
+  const jsonLdEvent = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": `Mordman live – ${gig.venue}, ${gig.city}`,
+    "startDate": gig.date,
+    "location": {
+      "@type": "Place",
+      "name": gig.venue,
+      "address": { "@type": "PostalAddress", "addressLocality": gig.city, "addressCountry": "SE" },
+    },
+    "performer": {
+      "@type": "MusicGroup",
+      "name": "Mordman",
+      "url": "https://www.mordman.se",
+    },
+    "description": gig.description || `Mordman live på ${gig.venue} i ${gig.city}.`,
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    ...(gig.media?.heroImage && { "image": `https://www.mordman.se${gig.media.heroImage}` }),
+    "url": `https://www.mordman.se/spelningar/${gig.slug}`,
+  };
+
   return (
     <main className="min-h-screen bg-black text-zinc-100 px-4 py-10 md:px-10 pt-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEvent) }}
+      />
       <section className="max-w-4xl mx-auto space-y-8">
         <Link
           href="/spelningar"
