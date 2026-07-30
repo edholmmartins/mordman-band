@@ -140,19 +140,26 @@ export default function Page() {
     transition={{ duration: 1.2, ease: 'easeOut' }}
     className="absolute inset-0 z-0 overflow-hidden"
   >
-    <video
-      className="h-full w-full object-cover"
-      autoPlay
-      muted
-      loop
-      playsInline
-      poster="/content/hero.jpg"   // optional fallback frame
-    >
-      <source src="/content/hero.mp4" type="video/mp4" />
-      {/* <source src="/content/hero.webm" type="video/webm" />  // optional extra format */}
-      Din webbläsare stödjer inte video-taggen.
-    </video>
-
+   <video
+  className="
+    h-full w-full
+    object-cover
+    md:scale-100
+    scale-[1.35]          /* EXTRA ZOOM ON MOBILE */
+    translate-x-0
+    md:translate-x-0     /* adjust to center drummer better */
+    origin-center
+    transition-transform
+    bg-black
+  "
+  autoPlay
+  muted
+  loop
+  playsInline
+  poster="/content/hero.jpg"
+>
+  <source src="/content/hero.mp4" type="video/mp4" />
+</video>
     {/* Overlay with purple/black gradient for legibility */}
     <div
       className="absolute inset-0 pointer-events-none"
