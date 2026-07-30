@@ -1,0 +1,100 @@
+'use client';
+import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+
+const NEON_GREEN = '#7DFF4D';
+const PURPLE_MAIN = '#6B2AA5';
+
+export default function HeroSection() {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  return (
+    <section id="hero" className="relative min-h-[calc(100vh-4rem)] pt-24 overflow-hidden">
+      <motion.div
+        initial={{ scale: 1.05, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="absolute inset-0 z-0 overflow-hidden"
+      >
+        <video
+          className="
+            h-full w-full
+            object-cover
+            md:scale-100
+            scale-[1.35]
+            translate-x-0
+            md:translate-x-0
+            origin-center
+            transition-transform
+            bg-black
+          "
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/content/hero.jpg"
+        >
+          <source src="/content/hero.mp4" type="video/mp4" />
+        </video>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at 0% 0%, ${PURPLE_MAIN}20 0%, transparent 55%), linear-gradient(to bottom, #00000040 10%, #00000060 30%, #00000080 50%)`,
+          }}
+        />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+      </motion.div>
+
+      <div
+        className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full blur-3xl opacity-60"
+        style={{ background: `${PURPLE_MAIN}80` }}
+      />
+      <div
+        className="pointer-events-none absolute left-1/3 bottom-0 h-64 w-64 rounded-full blur-3xl opacity-70"
+        style={{ background: `${NEON_GREEN}40` }}
+      />
+
+      <motion.div
+        initial={{ opacity: 0, y: 26 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
+        className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6"
+      >
+        <div className="max-w-3xl">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-black leading-[0.95] uppercase drop-shadow-[0_0_25px_rgba(0,0,0,0.9)]">
+            HÖGT. RÅTT. <br />
+            <span className="font-heading bg-clip-text">RÖJ.</span>
+          </h1>
+          <span className="mt-3 block text-3xl sm:text-4xl text-white/85 max-w-prose font-body">
+            Trött på Avicii-covers och RAJRAJ?
+          </span>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a
+              href="#photos"
+              onClick={(e) => { e.preventDefault(); scrollTo('photos'); }}
+              className="inline-flex items-center gap-1 rounded-full border px-5 py-2.5 text-sm uppercase transition shadow-[0_0_0_rgba(0,0,0,0)] hover:shadow-[0_0_25px_rgba(125,255,77,0.5)]"
+              style={{ borderColor: NEON_GREEN, color: NEON_GREEN }}
+            >
+              Bilder <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => { e.preventDefault(); scrollTo('contact'); }}
+              className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm uppercase transition"
+              style={{
+                background: NEON_GREEN,
+                color: '#000',
+                boxShadow: '0 0 35px rgba(125,255,77,0.55)',
+              }}
+            >
+              Boka oss
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
