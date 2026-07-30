@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mordman.se/sitemap.xml
+Sitemap: https://www.mordman.se/sitemap.xml

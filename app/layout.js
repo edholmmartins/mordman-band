@@ -19,6 +19,7 @@ export const robotoCondensed = Roboto_Condensed({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://www.mordman.se'),
   title: "Mordman – Coverband i Gävle | Festband för firmafest, bröllop & jubileum",
   description:
     "Mordman är ett coverband från Gävle som levererar röj till 30-, 40- och 50-årsfester, bröllop och firmafester. Komplett ljud, ljus och energi för din fest!",
@@ -29,7 +30,7 @@ export const metadata = {
     title: "Mordman – Coverband Gävle",
     description:
       "Coverband från Gävle med fullt röj! Perfekt för firmafest, 40-årsfest, bröllop och krogkvällar.",
-    url: "https://mordman.se",
+    url: "https://www.mordman.se",
     siteName: "Mordman",
     images: [
       {
@@ -53,9 +54,9 @@ export default function RootLayout({ children }) {
     "@type": "MusicGroup",
     "name": "Mordman",
     "alternateName": "Mördman",
-    "url": "https://mordman.se",
-    "logo": "https://mordman.se/content/mm_favicon_192x192.png",
-    "image": "https://mordman.se/content/hero.jpg",
+    "url": "https://www.mordman.se",
+    "logo": "https://www.mordman.se/content/mm_favicon_192x192.png",
+    "image": "https://www.mordman.se/content/hero.jpg",
     "description":
       "Mordman är ett coverband och festband från Gävle som spelar live på bröllop, firmafester och privata jubileum. Vi levererar röj, glädje och klassiska pop- och rockhits från 80-, 90- och 2000-talet.",
     "disambiguatingDescription":
@@ -81,7 +82,7 @@ export default function RootLayout({ children }) {
     "subjectOf": {
       "@type": "WebPage",
       "name": "Om Mordman – Coverband från Gävle",
-      "url": "https://mordman.se",
+      "url": "https://www.mordman.se",
       "description":
         "Information om Mordman, ett svenskt coverband från Gävle som spelar rock och pop på fester och evenemang. Inte att förväxla med folkrockduon Nordman."
     },
