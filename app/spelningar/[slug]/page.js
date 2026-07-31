@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gigs } from "../gigsData";
+import SetlistReveal from "@/components/SetlistReveal";
 
 export function generateStaticParams() {
   return gigs.map((gig) => ({ slug: gig.slug }));
@@ -105,11 +106,13 @@ export default function GigPage({ params }) {
         {gig.setlist && gig.setlist.length > 0 && (
           <section>
             <h2 className="text-xl font-medium mb-3">Setlist</h2>
-            <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-200">
-              {gig.setlist.map((song, idx) => (
-                <li key={idx}>{song}</li>
-              ))}
-            </ol>
+            <SetlistReveal date={gig.date}>
+              <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-200">
+                {gig.setlist.map((song, idx) => (
+                  <li key={idx}>{song}</li>
+                ))}
+              </ol>
+            </SetlistReveal>
           </section>
         )}
     {/* 
