@@ -8,7 +8,7 @@ export const gigs = [
     venue: "Furuvik",
     audience: "Företag", 
     title: "Firmafest för Partykungen",
-    poster: "/content/gigs/pk-furuvik.png",  
+    poster: "/content/gigs/pk-furuvik.jpg",  
     description:
       "Fullt ös på Partykungens årliga Halloweenfest! Ackompanjerade av lasershow.",
     setlist: [
@@ -27,7 +27,7 @@ export const gigs = [
       "Mr. Brightside - The Killers",
     ],
     media: {
-      heroImage: "/content/gigs/pk-furuvik.png", // drop files in /public/gigs
+      heroImage: "/content/gigs/pk-furuvik.jpg", // drop files in /public/gigs
       youtubeUrl: "https://www.youtube.com/embed/XXXXXXXXXXX", // optional
     },
   },
@@ -71,7 +71,7 @@ export const gigs = [
     venue: "Musikhuset - Sjömanskyrkan",
     audience: "Företag", 
     title: "Firmafest för Partykungen",
-    poster: "/content/gigs/pk-musikhuset.png",  
+    poster: "/content/gigs/pk-musikhuset.jpg",  
     description:
       "Fullt ös på Partykungens årliga Halloweenfest!",
     setlist: [
@@ -87,7 +87,7 @@ export const gigs = [
       "When you were young - The Killers",
     ],
     media: {
-      heroImage: "/content/gigs/pk-musikhuset.png",
+      heroImage: "/content/gigs/pk-musikhuset.jpg",
     },
   },
   {
