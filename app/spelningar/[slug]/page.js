@@ -90,7 +90,7 @@ export default function GigPage({ params }) {
           <div className="relative w-full aspect-[16/9] overflow-hidden rounded-3xl border border-zinc-800/70 bg-zinc-900">
             <Image
               src={gig.media.heroImage}
-              alt={`Mordman live at ${gig.venue} in ${gig.city}`}
+              alt={`Mordman live på ${gig.venue} i ${gig.city}`}
               fill
               className="object-cover"
             />

@@ -1,4 +1,5 @@
-import { Instagram, Facebook } from 'lucide-react';
+import Link from 'next/link';
+import { Instagram, Facebook, ArrowUpRight } from 'lucide-react';
 import SocialLink from '@/components/SocialLink';
 import FaqSection from '@/components/FaqSection';
 import HeroSection from '@/components/HeroSection';
@@ -158,6 +159,22 @@ export default function Page() {
               </div>
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Spelningar CTA */}
+      <section className="border-t border-white/10">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20 text-center">
+          <h2 className="text-3xl md:text-4xl font-black uppercase">Spelningar</h2>
+          <p className="mt-4 text-white/75 font-body max-w-xl mx-auto">
+            Kolla in våra tidigare och kommande spelningar — setlists, bilder och mer.
+          </p>
+          <Link
+            href="/spelningar"
+            className="inline-flex items-center gap-2 mt-6 rounded-full px-6 py-3 text-sm uppercase font-heading transition-all duration-300 border border-white/20 hover:border-[rgba(125,255,77,0.8)] hover:shadow-[0_0_25px_rgba(125,255,77,0.45)] hover:text-[#7DFF4D]"
+          >
+            Se alla spelningar <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 

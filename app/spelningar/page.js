@@ -39,7 +39,7 @@ export default function GigsPage() {
               <div className="relative w-full aspect-[3/4] overflow-hidden">
                 <Image
                   src={gig.poster || "/content/gigs/example-poster.jpg"}
-                  alt={`${gig.title} poster`}
+                  alt={`Affisch för Mordman-spelningen ${gig.title} på ${gig.venue} i ${gig.city}`}
                   fill
                   className="object-cover group-hover:brightness-110 transition-all"
                 />
