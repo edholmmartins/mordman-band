@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gigs } from "../gigsData";
 import SetlistReveal from "@/components/SetlistReveal";
+import { baseOpenGraph, BAND_ID, SITE_URL } from "../../seo";
 
 export function generateStaticParams() {
   return gigs.map((gig) => ({ slug: gig.slug }));
@@ -19,11 +20,22 @@ export function generateMetadata({ params }) {
     day: "2-digit",
   });
 
+  const title = `${gig.venue}, ${gig.city} – ${dateLabel} | Mordman`;
+  const description =
+    gig.description ||
+    `Mordman live på ${gig.venue} i ${gig.city} – setlist, bilder och videos från spelningen.`;
+
   return {
-    title: `${gig.venue}, ${gig.city} – ${dateLabel} | Mordman`,
-    description:
-      gig.description ||
-      `Mordman live på ${gig.venue} i ${gig.city} – setlist, bilder och videos från spelningen.`,
+    title,
+    description,
+    alternates: { canonical: `/spelningar/${gig.slug}` },
+    openGraph: {
+      ...baseOpenGraph,
+      title,
+      description,
+      url: `/spelningar/${gig.slug}`,
+      ...(gig.poster && { images: [gig.poster] }),
+    },
   };
 }
 
@@ -38,34 +50,62 @@ export default function GigPage({ params }) {
     day: "2-digit",
   });
 
-  const jsonLdEvent = {
+  // Event markup only for public gigs; private/corporate gigs aren't events
+  // the public can attend. Optional fields (startTime, endTime, address,
+  // venueUrl, price, ticketUrl, cancelled) live in gigsData.js.
+  const isPublic = gig.audience === "Öppen spelning";
+  const gigUrl = `${SITE_URL}/spelningar/${gig.slug}`;
+  const jsonLdEvent = isPublic && {
     "@context": "https://schema.org",
-    "@type": "Event",
+    "@type": "MusicEvent",
     "name": `Mordman live – ${gig.venue}, ${gig.city}`,
-    "startDate": gig.date,
+    "startDate": gig.startTime || gig.date,
+    ...(gig.endTime && { "endDate": gig.endTime }),
     "location": {
       "@type": "Place",
       "name": gig.venue,
-      "address": { "@type": "PostalAddress", "addressLocality": gig.city, "addressCountry": "SE" },
+      "address": {
+        "@type": "PostalAddress",
+        ...(gig.address && { "streetAddress": gig.address }),
+        "addressLocality": gig.city,
+        "addressCountry": "SE",
+      },
     },
-    "performer": {
-      "@type": "MusicGroup",
-      "name": "Mordman",
-      "url": "https://www.mordman.se",
+    "performer": { "@type": "MusicGroup", "@id": BAND_ID, "name": "Mordman" },
+    "organizer": {
+      "@type": "Organization",
+      "name": gig.venue,
+      ...(gig.venueUrl && { "url": gig.venueUrl }),
     },
+    ...(gig.price !== undefined && {
+      "offers": {
+        "@type": "Offer",
+        "price": gig.price,
+        "priceCurrency": "SEK",
+        "availability": "https://schema.org/InStock",
+        "url": gig.ticketUrl || gigUrl,
+        "validFrom": gig.date,
+      },
+    }),
     "description": gig.description || `Mordman live på ${gig.venue} i ${gig.city}.`,
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-    "eventStatus": "https://schema.org/EventScheduled",
-    ...(gig.media?.heroImage && { "image": `https://www.mordman.se${gig.media.heroImage}` }),
-    "url": `https://www.mordman.se/spelningar/${gig.slug}`,
+    "eventStatus": gig.cancelled
+      ? "https://schema.org/EventCancelled"
+      : "https://schema.org/EventScheduled",
+    ...((gig.poster || gig.media?.heroImage) && {
+      "image": `${SITE_URL}${gig.poster || gig.media.heroImage}`,
+    }),
+    "url": gigUrl,
   };
 
   return (
     <main className="min-h-screen bg-black text-zinc-100 px-4 py-10 md:px-10 pt-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEvent) }}
-      />
+      {jsonLdEvent && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdEvent) }}
+        />
+      )}
       <section className="max-w-4xl mx-auto space-y-8">
         <Link
           href="/spelningar"

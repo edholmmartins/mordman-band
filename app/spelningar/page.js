@@ -2,11 +2,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { gigs } from "./gigsData";
+import { baseOpenGraph } from "../seo";
 
 export const metadata = {
   title: "Spelningar | Mordman – Coverband live gigs & shows",
   description:
     "Alla spelningar med Mordman – kommande gig och arkiv med tidigare spelningar, setlists, bilder och videos.",
+  alternates: { canonical: "/spelningar" },
+  openGraph: { ...baseOpenGraph, url: "/spelningar" },
 };
 
 export default function GigsPage() {
