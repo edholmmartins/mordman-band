@@ -1,6 +1,6 @@
 import { Oswald, Roboto_Condensed } from 'next/font/google';
 import "./globals.css";
-import { baseOpenGraph, BAND_ID, HOME_DESCRIPTION, HOME_TITLE, SITE_URL } from "./seo";
+import { baseOpenGraph, BAND_ID, BAND_SAME_AS, HOME_DESCRIPTION, HOME_TITLE, SITE_URL } from "./seo";
 
 // ⬇️ NEW: import the navbar component
 import NavBar from "../components/NavBar";
@@ -77,11 +77,7 @@ export default function RootLayout({ children }) {
     ],
     "priceRange": "$$",
     "foundingLocation": { "@type": "Place", "name": "Gävle, Sverige" },
-    "sameAs": [
-      "https://www.instagram.com/mordman.band/",
-      "https://www.facebook.com/profile.php?id=61579179277781",
-      "https://open.spotify.com/playlist/260tGjraPvj0SnfFwag455",
-    ],
+    "sameAs": BAND_SAME_AS,
   };
 
   return (

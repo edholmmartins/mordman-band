@@ -73,8 +73,9 @@ export default function HeroSection() {
         className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6"
       >
         <div className="max-w-3xl">
+          {/* H1 names the brand (search engines read "mordman" as a typo of "Nordman") plus what we are and who we play for; the slogan stays as the big visual line. */}
           <h1 className="mb-4 text-sm sm:text-base uppercase tracking-[0.18em] text-white/80 font-heading drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]">
-            Coverband från Gävle – rock till 50-årsfesten, privatfesten och krogen
+            Mordman – coverband från Gävle för 50-årsfesten, privatfesten och krogen
           </h1>
           <p className="font-heading tracking-tight text-6xl sm:text-7xl md:text-8xl font-black leading-[0.95] uppercase drop-shadow-[0_0_25px_rgba(0,0,0,0.9)]">
             HÖGT. RÅTT. <br />
