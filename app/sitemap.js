@@ -1,4 +1,5 @@
 import { gigs } from './spelningar/gigsData';
+import { landingPages } from '../components/landing/pages';
 
 const BASE_URL = 'https://www.mordman.se';
 
@@ -14,6 +15,13 @@ export default function sitemap() {
     priority: 0.6,
   }));
 
+  const landingEntries = landingPages.map((page) => ({
+    url: `${BASE_URL}${page.path}`,
+    lastModified: SITE_UPDATED,
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }));
+
   return [
     {
       url: BASE_URL,
@@ -27,6 +35,7 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    ...landingEntries,
     ...gigEntries,
   ];
 }
