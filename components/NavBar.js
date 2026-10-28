@@ -15,15 +15,13 @@ const sections = [
   { id: "gigs", label: "SPELNINGAR" },
 ];
 
-function scrollToSection(id) {
-  if (typeof window === "undefined") return;
+// Real <a href="/#id"> links so crawlers can follow them; on the homepage we
+// intercept the click and smooth-scroll instead.
+function scrollToSection(e, id) {
   const el = document.getElementById(id);
-
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-  } else {
-    window.location.href = `/#${id}`;
-  }
+  if (!el) return; // other page: let the browser follow /#id
+  e.preventDefault();
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 export default function NavBar() {
@@ -67,13 +65,14 @@ export default function NavBar() {
             {sections
               .filter((s) => s.id !== "gigs")
               .map((s) => (
-                <button
+                <a
                   key={s.id}
-                  onClick={() => scrollToSection(s.id)}
+                  href={`/#${s.id}`}
+                  onClick={(e) => scrollToSection(e, s.id)}
                   className="hover:opacity-80"
                 >
                   {s.label}
-                </button>
+                </a>
               ))}
 
             {/* Divider before external/subpage link */}

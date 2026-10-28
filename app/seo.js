@@ -3,10 +3,14 @@
 export const SITE_URL = "https://www.mordman.se";
 export const BAND_ID = `${SITE_URL}/#band`;
 
+export const HOME_TITLE =
+  "Coverband Gävle – band till 50-årsfest, privatfest & krog | Mordman";
+export const HOME_DESCRIPTION =
+  "Mordman är ett rockigt coverband från Gävle. Vi spelar på 30-, 40- och 50-årsfester, privatfester, krogar och festivaler i Gävleborg, Uppsala och Dalarna.";
+
 export const baseOpenGraph = {
-  title: "Mordman – Coverband Gävle",
-  description:
-    "Coverband från Gävle med fullt röj! Perfekt för firmafest, 40-årsfest, bröllop och krogkvällar.",
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
   siteName: "Mordman",
   images: [
     {

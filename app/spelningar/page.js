@@ -4,12 +4,16 @@ import Image from "next/image";
 import { gigs } from "./gigsData";
 import { baseOpenGraph } from "../seo";
 
+const title = "Spelningar – coverband live i Gävle med omnejd | Mordman";
+const description =
+  "Kommande och tidigare spelningar med Mordman – fester, krogkvällar och festivaler i Gävle, Sandviken och hela Gävleborg. Setlists och bilder.";
+
 export const metadata = {
-  title: "Spelningar | Mordman – Coverband live gigs & shows",
-  description:
-    "Alla spelningar med Mordman – kommande gig och arkiv med tidigare spelningar, setlists, bilder och videos.",
+  title,
+  description,
   alternates: { canonical: "/spelningar" },
-  openGraph: { ...baseOpenGraph, url: "/spelningar" },
+  openGraph: { ...baseOpenGraph, title, description, url: "/spelningar" },
+  twitter: { title, description },
 };
 
 export default function GigsPage() {

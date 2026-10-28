@@ -7,6 +7,7 @@ import PhotoGrid from '@/components/PhotoGrid';
 import FloatingEmailCTA from '@/components/FloatingEmailCTA';
 import ScrollToTopLink from '@/components/ScrollToTopLink';
 import { baseOpenGraph } from './seo';
+import { gigs } from './spelningar/gigsData';
 
 const NEON_GREEN = '#7DFF4D';
 const PURPLE_MAIN = '#6B2AA5';
@@ -50,7 +51,14 @@ const jsonLdFAQ = {
   })),
 };
 
+const formatGigDate = (date) =>
+  new Date(date).toLocaleDateString('sv-SE', { year: 'numeric', month: 'short', day: 'numeric' });
+
 export default function Page() {
+  const latestGigs = [...gigs]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
       <script
@@ -65,7 +73,7 @@ export default function Page() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
           <h2 className="text-3xl md:text-4xl font-black uppercase">
             <span className="bg-clip-text">
-              Vilka är vi?
+              Coverband från Gävle med ljud och ljus
             </span>
           </h2>
           <p className="font-body mt-6 text-white/80 leading-relaxed">
@@ -102,7 +110,7 @@ export default function Page() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
           <div className="flex items-end justify-between gap-6">
             <h2 className="text-3xl md:text-4xl font-black uppercase">
-              Vad spelar vi?
+              Rock och pop från 90- och 00-talet
             </h2>
           </div>
 
@@ -122,7 +130,7 @@ export default function Page() {
       <section id="photos" className="scroll-mt-24 border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
           <div className="flex items-end justify-between gap-6">
-            <h2 className="text-3xl md:text-4xl font-black uppercase">Bilder</h2>
+            <h2 className="text-3xl md:text-4xl font-black uppercase">Bilder från våra spelningar</h2>
             <ScrollToTopLink />
           </div>
 
@@ -133,7 +141,7 @@ export default function Page() {
       {/* Socials */}
       <section id="socials" className="scroll-mt-24 border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-24">
-          <h2 className="text-3xl md:text-4xl font-black uppercase">Socials</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase">Följ Mordman på sociala medier</h2>
           <p className="mt-6 text-white/80">
             Följ ljudet. Nya låtar, turnédatum och bakom kulisserna.
           </p>
@@ -154,7 +162,7 @@ export default function Page() {
           }}
         >
           <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20">
-            <h2 className="text-3xl md:text-4xl font-black uppercase">Kontakt</h2>
+            <h2 className="text-3xl md:text-4xl font-black uppercase">Boka band till din fest</h2>
             <p className="mt-2 text-white/75 font-body max-w-2xl">
               Bokningar, press eller allmänna förfrågningar — skicka oss ett email:
             </p>
@@ -208,10 +216,30 @@ export default function Page() {
       {/* Spelningar CTA */}
       <section className="border-t border-white/10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-16 md:py-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-black uppercase">Spelningar</h2>
+          <h2 className="text-3xl md:text-4xl font-black uppercase">Senaste spelningarna</h2>
           <p className="mt-4 text-white/75 font-body max-w-xl mx-auto">
             Kolla in våra tidigare och kommande spelningar — setlists, bilder och mer.
           </p>
+          <ul className="mt-8 grid gap-4 sm:grid-cols-3 text-left">
+            {latestGigs.map((gig) => (
+              <li key={gig.slug}>
+                <Link
+                  href={`/spelningar/${gig.slug}`}
+                  className="block h-full rounded-2xl border border-white/15 p-5 transition-all duration-300 hover:border-[rgba(125,255,77,0.8)] hover:shadow-[0_0_25px_rgba(125,255,77,0.35)]"
+                >
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/50 font-body">
+                    {formatGigDate(gig.date)}
+                  </span>
+                  <span className="mt-1 block font-heading text-lg uppercase">
+                    {gig.title || gig.venue}
+                  </span>
+                  <span className="block text-sm text-white/60 font-body">
+                    {gig.venue} · {gig.city}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
           <Link
             href="/spelningar"
             className="inline-flex items-center gap-2 mt-6 rounded-full px-6 py-3 text-sm uppercase font-heading transition-all duration-300 border border-white/20 hover:border-[rgba(125,255,77,0.8)] hover:shadow-[0_0_25px_rgba(125,255,77,0.45)] hover:text-[#7DFF4D]"
@@ -226,7 +254,12 @@ export default function Page() {
 
       {/* Footer */}
       <footer className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/60">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10 flex flex-col items-center gap-2 text-center text-sm text-white/60">
+          {/* Local trust block: keep name/email identical to the Google Business Profile. */}
+          <p>
+            Mordman – coverband från Gävle · Spelar i Gävleborg, Uppsala och Dalarna ·{' '}
+            <a href="mailto:boka@mordman.se" className="hover:text-white">boka@mordman.se</a>
+          </p>
           <p>&copy; {new Date().getFullYear()} Mordman Handelsbolag - Org. Nummer: 969803-8123. Alla rättigheter förbehållna.</p>
         </div>
       </footer>
