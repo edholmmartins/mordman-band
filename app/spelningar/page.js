@@ -41,6 +41,7 @@ export default function GigsPage() {
                   src={gig.poster || "/content/gigs/example-poster.jpg"}
                   alt={`Affisch för Mordman-spelningen ${gig.title} på ${gig.venue} i ${gig.city}`}
                   fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover group-hover:brightness-110 transition-all"
                 />
               </div>

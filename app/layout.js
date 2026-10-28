@@ -34,7 +34,7 @@ export const metadata = {
     siteName: "Mordman",
     images: [
       {
-        url: "/content/hero.jpg",
+        url: "/content/og.jpg",
         width: 1200,
         height: 630,
         alt: "Mordman coverband från Gävle live på scen",
@@ -50,7 +50,7 @@ export const metadata = {
       "Coverband från Gävle med fullt röj! Perfekt för firmafest, 40-årsfest, bröllop och krogkvällar.",
     images: [
       {
-        url: "/content/hero.jpg",
+        url: "/content/og.jpg",
         width: 1200,
         height: 630,
         alt: "Mordman coverband från Gävle live på scen",
