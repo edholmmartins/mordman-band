@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Instagram, Facebook, ArrowUpRight } from 'lucide-react';
 import SocialLink from '@/components/SocialLink';
 import FaqSection from '@/components/FaqSection';
+import { homeFaqs } from '@/components/homeFaqs';
 import HeroSection from '@/components/HeroSection';
 import PhotoGrid from '@/components/PhotoGrid';
 import FloatingEmailCTA from '@/components/FloatingEmailCTA';
@@ -19,36 +20,15 @@ export const metadata = {
   openGraph: { ...baseOpenGraph, url: '/' },
 };
 
-// FAQPage schema for the visible FAQ on this page only.
-// Keep the text in sync with the answers in components/FaqSection.js.
+// FAQPage schema for the visible FAQ on this page only. Questions and
+// answers come from components/homeFaqs.js, same as components/FaqSection.js.
 const jsonLdFAQ = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      q: 'Vilken typ av evenemang spelar Mordman på?',
-      a: 'Vi spelar ofta på bröllop, firmafester, jubileum samt 30/40/50-årsfester. Vi gör även krog- och eventkvällar och skräddarsyr upplägg efter publik och lokal.',
-    },
-    {
-      q: 'Spelar ni bara i Gävle?',
-      a: 'Nej! Vi utgår från Gävle men spelar överallt där det finns publik och eluttag – Sandviken, Uppsala, Dalarna, Stockholm och längre bort också, bara vi får lite framförhållning för resa och planering.',
-    },
-    {
-      q: 'Vilken musik och vilka artister spelar ni?',
-      a: 'Vi spelar energisk rock från 80-talet och framåt – låtar som alla känner igen och älskar att sjunga med i. Här är exempel på artister i vår repertoar: Foo Fighters, Blink-182, The Killers, Audioslave, The Hellacopters, Queens of the Stone Age, Nothing But Thieves, The Hives, The Smashing Pumpkins, Red Hot Chili Peppers, The White Stripes, Priestess, KISS, Millencolin, Turbonegro, Paramore, Kings of Leon, Rage Against the Machine, Blur, Franz Ferdinand, Black Sabbath, Ozzy Osbourne och Nirvana. Och ja – vi tar gärna emot önskelåtar, så länge de passar på dansgolvet.',
-    },
-    {
-      q: 'Vad kostar det att boka Mordman?',
-      a: 'Pris förhandlas i förväg och beror på resväg, vad vi behöver ta med i ljud och ljus samt speltidens längd. Hör av dig med datum, plats och ungefärligt upplägg så återkommer vi snabbt: boka@mordman.se.',
-    },
-    {
-      q: 'Kan ni spela utomhus? Vad krävs?',
-      a: 'Såklart! Bara scenen håller oss, elen håller för oss, och grannarna antingen inte bryr sig – eller ännu hellre vill vara med. Vi behöver väderskydd för utrustningen och stabil strömmatning (helst egen fas) nära scenen.',
-    },
-  ].map(({ q, a }) => ({
+  mainEntity: homeFaqs.map(({ q, text }) => ({
     '@type': 'Question',
     name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
+    acceptedAnswer: { '@type': 'Answer', text },
   })),
 };
 
@@ -96,6 +76,13 @@ export default function Page() {
           <p className="font-body text-white/80 leading-relaxed mt-6">
             <strong>Mordman passar perfekt</strong> för 30-, 40- eller 50-årsfesten, firmafesten eller när du vill toppa stämningen på din krog eller restaurang.
             Kort sagt – vi fixar <strong>röj, svett och rock&apos;n&apos;roll</strong> så det känns som en hel arena, oavsett lokalens storlek.
+          </p>
+
+          <p className="font-body text-white/80 leading-relaxed mt-6">
+            Vi utgår från Gävle och spelar i Sandviken, Hofors, Ockelbo och resten av Gästrikland, upp genom{' '}
+            <Link href="/coverband-halsingland" className="underline">Hälsingland</Link> och vidare till{' '}
+            <Link href="/coverband-uppsala" className="underline">Uppsala</Link> och{' '}
+            <Link href="/coverband-dalarna" className="underline">Dalarna</Link>.
           </p>
         </div>
       </section>
