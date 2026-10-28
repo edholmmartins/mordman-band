@@ -1,6 +1,6 @@
 import { Oswald, Roboto_Condensed } from 'next/font/google';
 import "./globals.css";
-import { baseOpenGraph, BAND_ID, SITE_URL } from "./seo";
+import { baseOpenGraph, BAND_ID, HOME_DESCRIPTION, HOME_TITLE, SITE_URL } from "./seo";
 
 // ⬇️ NEW: import the navbar component
 import NavBar from "../components/NavBar";
@@ -21,18 +21,16 @@ export const robotoCondensed = Roboto_Condensed({
 
 export const metadata = {
   metadataBase: new URL('https://www.mordman.se'),
-  title: "Mordman – Coverband i Gävle | Festband för firmafest, bröllop & jubileum",
-  description:
-    "Mordman är ett coverband från Gävle som levererar röj till 30-, 40- och 50-årsfester, bröllop och firmafester. Komplett ljud, ljus och energi för din fest!",
+  title: HOME_TITLE,
+  description: HOME_DESCRIPTION,
   icons: {
     icon: '/content/mm_favicon_192x192.png',
   },
   openGraph: baseOpenGraph,
   twitter: {
     card: "summary_large_image",
-    title: "Mordman – Coverband Gävle",
-    description:
-      "Coverband från Gävle med fullt röj! Perfekt för firmafest, 40-årsfest, bröllop och krogkvällar.",
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: [
       {
         url: "/content/og.jpg",

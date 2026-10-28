@@ -41,27 +41,16 @@ export default function MobileMenu({ sections = [] }) {
     };
   }, [open, savedScrollY]);
 
-  const goTo = (id) => {
+  // Real <a href="/#id"> links (crawlable); on the homepage we smooth-scroll.
+  const goTo = (e, id) => {
+    const el = document.getElementById(id);
     setOpen(false);
+    if (!el) return; // other page: let the browser follow /#id
+    e.preventDefault();
 
-    // wait one frame so body unlock happens before we scroll / navigate
+    // wait one frame so body unlock happens before we scroll
     requestAnimationFrame(() => {
-      if (typeof window === 'undefined') return;
-
-      // special case: gigs -> /spelningar
-      if (id === 'gigs') {
-        window.location.href = '/spelningar';
-        return;
-      }
-
-      const el = document.getElementById(id);
-
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        // if we’re on /spelningar or any subpage, go to root and target the anchor
-        window.location.href = `/#${id}`;
-      }
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   };
 
@@ -104,13 +93,14 @@ export default function MobileMenu({ sections = [] }) {
                 </Link>
               ) : (
                 // all other sections: scrollTo on root page
-                <button
+                <a
                   key={s.id}
-                  onClick={() => goTo(s.id)}
-                  className="w-full py-4 text-center text-2xl md:text-3xl rounded-lg hover:bg-white/10 transition"
+                  href={`/#${s.id}`}
+                  onClick={(e) => goTo(e, s.id)}
+                  className="block w-full py-4 text-center text-2xl md:text-3xl rounded-lg hover:bg-white/10 transition"
                 >
                   {s.label}
-                </button>
+                </a>
               )
             )}
           </nav>

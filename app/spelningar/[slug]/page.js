@@ -4,7 +4,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { gigs } from "../gigsData";
 import SetlistReveal from "@/components/SetlistReveal";
+import { ArrowUpRight } from "lucide-react";
 import { baseOpenGraph, BAND_ID, SITE_URL } from "../../seo";
+
+// Rebuild daily so setlists of gigs that have happened are in the HTML.
+export const revalidate = 86400;
+
+// Gig day ends at midnight Swedish time (CET; close enough in summer too).
+const isPastGig = (date) => new Date() > new Date(`${date}T23:59:59+01:00`);
 
 export function generateStaticParams() {
   return gigs.map((gig) => ({ slug: gig.slug }));
@@ -14,13 +21,12 @@ export function generateMetadata({ params }) {
   const gig = gigs.find((g) => g.slug === params.slug);
   if (!gig) return {};
 
-  const dateLabel = new Date(gig.date).toLocaleDateString("sv-SE", {
+  const monthLabel = new Date(gig.date).toLocaleDateString("sv-SE", {
     year: "numeric",
     month: "long",
-    day: "2-digit",
   });
 
-  const title = `${gig.venue}, ${gig.city} – ${dateLabel} | Mordman`;
+  const title = `${gig.title || gig.venue} i ${gig.city} – Mordman live (${monthLabel})`;
   const description =
     gig.description ||
     `Mordman live på ${gig.venue} i ${gig.city} – setlist, bilder och videos från spelningen.`;
@@ -34,6 +40,11 @@ export function generateMetadata({ params }) {
       title,
       description,
       url: `/spelningar/${gig.slug}`,
+      ...(gig.poster && { images: [gig.poster] }),
+    },
+    twitter: {
+      title,
+      description,
       ...(gig.poster && { images: [gig.poster] }),
     },
   };
@@ -98,6 +109,14 @@ export default function GigPage({ params }) {
     "url": gigUrl,
   };
 
+  const setlistList = gig.setlist?.length > 0 && (
+    <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-200">
+      {gig.setlist.map((song, idx) => (
+        <li key={idx}>{song}</li>
+      ))}
+    </ol>
+  );
+
   return (
     <main className="min-h-screen bg-black text-zinc-100 px-4 py-10 md:px-10 pt-24">
       {jsonLdEvent && (
@@ -146,15 +165,20 @@ export default function GigPage({ params }) {
         {gig.setlist && gig.setlist.length > 0 && (
           <section>
             <h2 className="text-xl font-medium mb-3">Setlist</h2>
-            <SetlistReveal date={gig.date}>
-              <ol className="list-decimal list-inside space-y-1 text-sm text-zinc-200">
-                {gig.setlist.map((song, idx) => (
-                  <li key={idx}>{song}</li>
-                ))}
-              </ol>
-            </SetlistReveal>
+            {isPastGig(gig.date) ? (
+              setlistList
+            ) : (
+              <SetlistReveal date={gig.date}>{setlistList}</SetlistReveal>
+            )}
           </section>
         )}
+
+        <Link
+          href="/#contact"
+          className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm uppercase font-heading transition-all duration-300 border border-white/20 hover:border-[rgba(125,255,77,0.8)] hover:shadow-[0_0_25px_rgba(125,255,77,0.45)] hover:text-[#7DFF4D]"
+        >
+          Boka Mordman till din fest <ArrowUpRight className="h-4 w-4" />
+        </Link>
     {/* 
         {gig.media?.youtubeUrl && (
           <section className="space-y-3">
