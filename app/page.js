@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import PhotoGrid from '@/components/PhotoGrid';
 import FloatingEmailCTA from '@/components/FloatingEmailCTA';
 import ScrollToTopLink from '@/components/ScrollToTopLink';
+import LandingLinks from '@/components/landing/LandingLinks';
 import { baseOpenGraph } from './seo';
 import { gigs } from './spelningar/gigsData';
 
@@ -248,6 +249,8 @@ export default function Page() {
           </Link>
         </div>
       </section>
+
+      <LandingLinks current="/" />
 
       <FaqSection />
       <FloatingEmailCTA />
