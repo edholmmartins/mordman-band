@@ -58,7 +58,7 @@ const page = {
     {
       "h2": "Varför ett coverband från Gävle?",
       "blocks": [
-        "För att vi inte låter som alla andra partyband. Inga Avicii-covers, ingen RAJRAJ. Vi spelar svettig nostalgi från 90- och 00-talet – låtarna du älskar men kanske glömt att du saknade. Vi utgår från Gävle och spelar i hela Gävleborg, i Uppsala och i Dalarna."
+        "För att vi inte låter som alla andra partyband. Inga Avicii-covers, ingen RAJRAJ. Vi spelar svettig nostalgi från 90- och 00-talet – låtarna du älskar men kanske glömt att du saknade. Vi utgår från Gävle och spelar i hela [Gävleborg](/coverband-halsingland), i [Uppsala](/coverband-uppsala) och i [Dalarna](/coverband-dalarna)."
       ]
     }
   ],

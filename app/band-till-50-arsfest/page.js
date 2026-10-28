@@ -49,7 +49,7 @@ const page = {
             "**Komplett ljud och ljus**, anpassat efter lokalen och stämningen du vill ha.",
             "**Riktig faktura.** Vi har F-skattesedel, så det blir inga konstiga upplägg.",
             "**Inomhus eller utomhus.** Vi spelar i festlokal, på krogen eller i trädgården. Utomhus behöver vi väderskydd för utrustningen och stabil ström nära scenen.",
-            "**Vi utgår från Gävle** och spelar i hela Gävleborg, Uppsala län och Dalarna."
+            "**Vi utgår från Gävle** och spelar i hela [Gävleborg](/coverband-halsingland), [Uppsala län](/coverband-uppsala) och [Dalarna](/coverband-dalarna)."
           ]
         },
         "Ska du hyra en festlokal? [Boka bandet](/boka-band-till-fest) samtidigt, så att datumet är ert hos båda."
