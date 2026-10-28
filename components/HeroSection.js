@@ -1,4 +1,6 @@
 'use client';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -6,6 +8,13 @@ const NEON_GREEN = '#7DFF4D';
 const PURPLE_MAIN = '#6B2AA5';
 
 export default function HeroSection() {
+  // Video only on desktop without reduced motion; mobile gets the poster (LCP).
+  const [showVideo, setShowVideo] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
+    setShowVideo(mq.matches);
+  }, []);
+
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -14,31 +23,31 @@ export default function HeroSection() {
   return (
     <section id="hero" className="relative min-h-[calc(100vh-4rem)] pt-24 overflow-hidden">
       <motion.div
-        initial={{ scale: 1.05, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={{ scale: 1.05 }}
+        animate={{ scale: 1 }}
         transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="absolute inset-0 z-0 overflow-hidden"
+        className="absolute inset-0 z-0 overflow-hidden bg-black"
       >
-        <video
-          className="
-            h-full w-full
-            object-cover
-            md:scale-100
-            scale-[1.35]
-            translate-x-0
-            md:translate-x-0
-            origin-center
-            transition-transform
-            bg-black
-          "
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/content/hero.jpg"
-        >
-          <source src="/content/hero.mp4" type="video/mp4" />
-        </video>
+        <Image
+          src="/content/hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover scale-[1.35] md:scale-100 origin-center"
+        />
+        {showVideo && (
+          <video
+            className="absolute inset-0 h-full w-full object-cover origin-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src="/content/hero.mp4" type="video/mp4" />
+          </video>
+        )}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -58,8 +67,8 @@ export default function HeroSection() {
       />
 
       <motion.div
-        initial={{ opacity: 0, y: 26 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 26 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.7, ease: 'easeOut', delay: 0.15 }}
         className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6"
       >
